@@ -93,7 +93,7 @@ export function Navbar() {
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    className="text-lg font-medium text-gray-300 hover:text-white transition-colors"
+                                    className="text-lg font-medium text-gray-300 active:text-white md:hover:text-white transition-colors"
                                     onClick={(e) => handleNavClick(e, link.href)}
                                 >
                                     {link.name}
