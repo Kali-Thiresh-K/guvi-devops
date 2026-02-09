@@ -23,6 +23,21 @@ export function Navbar() {
         { name: 'Benefits', href: '#benefits' },
     ];
 
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        setIsMobileMenuOpen(false);
+        if (href === '#') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+        if (href.startsWith('#')) {
+            const element = document.querySelector(href);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
+
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-md border-b border-white/10 py-4' : 'bg-transparent py-6'
@@ -41,6 +56,7 @@ export function Navbar() {
                             key={link.name}
                             href={link.href}
                             className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                            onClick={(e) => handleNavClick(e, link.href)}
                         >
                             {link.name}
                         </a>
@@ -78,7 +94,7 @@ export function Navbar() {
                                     key={link.name}
                                     href={link.href}
                                     className="text-lg font-medium text-gray-300 hover:text-white transition-colors"
-                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    onClick={(e) => handleNavClick(e, link.href)}
                                 >
                                     {link.name}
                                 </a>
